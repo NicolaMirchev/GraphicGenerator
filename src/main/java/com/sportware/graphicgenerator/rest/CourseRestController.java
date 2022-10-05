@@ -20,7 +20,7 @@ import com.sportware.graphicgenerator.services.CourseService;
 @RequestMapping("/api")
 public class CourseRestController {
 	
-	// CourseService autowiered!	
+	// CourseService autowired!	
 	@Autowired
 	private CourseService courseService;
 	

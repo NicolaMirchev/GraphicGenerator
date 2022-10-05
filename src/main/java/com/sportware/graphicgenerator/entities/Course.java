@@ -12,7 +12,7 @@ import javax.persistence.Table;
  *
  */
 @Entity
-@Table(name ="Course")
+@Table(name ="courses")
 public class Course {
 
 	@Id
@@ -21,8 +21,6 @@ public class Course {
 	@Column(name = "times_per_week")
 	private int timesPerWeek;
 	
-	@Column(name = "starting_time")
-	private String startingTime;
 	
 	/**
 	 * 		// Empty constructor, required by Hibernate.
@@ -36,7 +34,6 @@ public class Course {
 	 * @param timesPerWeek
 	 */
 	public Course(String name, int timesPerWeek) {
-		super();
 		this.name = name;
 		this.timesPerWeek = timesPerWeek;
 	}
@@ -51,10 +48,6 @@ public class Course {
 
 	public int getTimesPerWeek() {
 		return timesPerWeek;
-	}
-
-	public void setTimesPerWeek(int timesPerWeek) {
-		this.timesPerWeek = timesPerWeek;
 	}
 	
 }
