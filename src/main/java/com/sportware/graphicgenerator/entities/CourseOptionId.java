@@ -16,6 +16,27 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class CourseOptionId implements Serializable{
 
+	private static final long serialVersionUID = -629056128654897953L;
+	
+	
+	@Column(name = "course")
+	private String course;
+	
+	private String weekday;
+	
+	@Column(name = "starting_time")
+	private Instant startingTime;
+	
+	public CourseOptionId(String course, String weekday, Instant startingTime) {
+		this.course = course;
+		this.weekday = weekday;
+		this.startingTime = startingTime;
+	}
+	/**
+	 *  Empty constructor, required by JPA.
+	 */
+	public CourseOptionId() {
+	}
 	@Override
 	public int hashCode() {
 		return Objects.hash(course, startingTime, weekday);
@@ -56,22 +77,6 @@ public class CourseOptionId implements Serializable{
 
 	public void setStartingTime(Instant startingTime) {
 		this.startingTime = startingTime;
-	}
-
-	private static final long serialVersionUID = -629056128654897953L;
-	
-	@Column(name = "course")
-	private String course;
-	
-	private String weekday;
-	
-	@Column(name = "starting_time")
-	private Instant startingTime;
-
-	/**
-	 *  Empty constructor, required by JPA.
-	 */
-	public CourseOptionId() {
 	}
 
 }
