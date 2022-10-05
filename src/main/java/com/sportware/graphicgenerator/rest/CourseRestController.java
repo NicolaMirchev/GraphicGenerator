@@ -17,7 +17,7 @@ import com.sportware.graphicgenerator.services.CourseService;
  *
  */
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/courses")
 public class CourseRestController {
 	
 	// CourseService autowired!	
@@ -27,7 +27,7 @@ public class CourseRestController {
 	/** 
 	 * @return
 	 */
-	@GetMapping("courses")
+	@GetMapping("all")
 	public List<Course> findAllCourses(){
 		return courseService.findAllCourses();
 	}

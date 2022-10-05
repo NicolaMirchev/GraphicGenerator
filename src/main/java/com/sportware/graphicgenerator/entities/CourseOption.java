@@ -16,6 +16,14 @@ import javax.persistence.Table;
 @Table(name = "course_option")
 public class CourseOption {
 	
+	public CourseOptionId getId() {
+		return id;
+	}
+
+	public void setId(CourseOptionId id) {
+		this.id = id;
+	}
+
 	@EmbeddedId
 	private CourseOptionId id;
 	
