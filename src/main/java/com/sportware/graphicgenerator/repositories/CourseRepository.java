@@ -3,13 +3,13 @@
  */
 package com.sportware.graphicgenerator.repositories;
 
-import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.sportware.graphicgenerator.entities.Course;
 
 /**
  * 
  */
-public interface CourseRepository {
-	public List<Course> findAllCourses();
+public interface CourseRepository extends JpaRepository<Course, String> {
 }

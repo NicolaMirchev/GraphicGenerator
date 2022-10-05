@@ -10,5 +10,5 @@ import com.sportware.graphicgenerator.entities.Course;
  * The interface contains logic for the course objects in our application.
  */
 public interface CourseService {
-	public List<Course> FindAllCourses();
+	public List<Course> findAllCourses();
 }

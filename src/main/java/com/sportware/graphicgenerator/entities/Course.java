@@ -3,19 +3,26 @@
  */
 package com.sportware.graphicgenerator.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 /** The class contains fields about course. Also defines how to be mapped to the db table.
  *
  */
 @Entity
-@Table(name ="course")
+@Table(name ="Course")
 public class Course {
 
+	@Id
 	private String name;
 	
+	@Column(name = "times_per_week")
 	private int timesPerWeek;
+	
+	@Column(name = "starting_time")
+	private String startingTime;
 	
 	/**
 	 * 		// Empty constructor, required by Hibernate.
