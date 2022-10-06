@@ -3,6 +3,7 @@
  */
 package com.sportware.graphicgenerator.entities;
 
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -18,8 +19,14 @@ import javax.persistence.Table;
 @Table(name = "graphic")
 public class Graphic {
 	
-	public Graphic(int id, int gapRate) {
+	public Graphic(int gapRate) {
 		this.gapRate = gapRate;
+		courses = new HashSet<>();
+	}
+	
+	public Graphic(Graphic graphic) {
+		this.gapRate = graphic.getGapRate();
+		courses =  new HashSet<>(graphic.getCourses());
 	}
 
 
@@ -33,6 +40,26 @@ public class Graphic {
 	private Set<CourseOption> courses;
 
 	
+	public int getGapRate() {
+		return gapRate;
+	}
+
+
+	public void setGapRate(int gapRate) {
+		this.gapRate = gapRate;
+	}
+
+
+	public Set<CourseOption> getCourses() {
+		return courses;
+	}
+
+
+	public void setCourses(Set<CourseOption> courses) {
+		this.courses = courses;
+	}
+
+
 	/**
 	 * Empty constructor for JPA.
 	 */
