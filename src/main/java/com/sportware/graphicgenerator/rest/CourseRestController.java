@@ -17,7 +17,7 @@ import com.sportware.graphicgenerator.services.CourseService;
  *
  */
 @RestController
-@RequestMapping("/courses")
+@RequestMapping("/course")
 public class CourseRestController {
 	
 	// CourseService autowired!	

@@ -7,6 +7,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.Instant;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,16 +26,16 @@ import com.sportware.graphicgenerator.utils.CourseCollectionManipulator;
 class UtilsTest {
 
 	private static List<CourseOption> allCourseOptions = List.of(
-			new CourseOption(new CourseOptionId("Data structures", "Wednesday", Instant.now()), null),
-			new CourseOption(new CourseOptionId("Data structures", "Monday", Instant.now()), null),
-			new CourseOption(new CourseOptionId("Data structures", "Friday", Instant.now()), null),
-			new CourseOption(new CourseOptionId("Algorithms", "Wednesday", Instant.now()), null),
-			new CourseOption(new CourseOptionId("System Design", "Thursday", Instant.now()), null),
-			new CourseOption(new CourseOptionId("System Design", "Wednesday", Instant.now()), null),
-			new CourseOption(new CourseOptionId("Data bases", "Monday", Instant.now()), null),
-			new CourseOption(new CourseOptionId("Data bases", "Tuesday", Instant.now()), null),
-			new CourseOption(new CourseOptionId("Algorithms", "Thursday", Instant.now()), null),
-			new CourseOption(new CourseOptionId("Data structures", "Thursday", Instant.now()), null));
+			new CourseOption(new CourseOptionId("Data structures", "Wednesday", LocalTime.now()), null),
+			new CourseOption(new CourseOptionId("Data structures", "Monday", LocalTime.now()), null),
+			new CourseOption(new CourseOptionId("Data structures", "Friday", LocalTime.now()), null),
+			new CourseOption(new CourseOptionId("Algorithms", "Wednesday", LocalTime.now()), null),
+			new CourseOption(new CourseOptionId("System Design", "Thursday", LocalTime.now()), null),
+			new CourseOption(new CourseOptionId("System Design", "Wednesday", LocalTime.now()), null),
+			new CourseOption(new CourseOptionId("Data bases", "Monday", LocalTime.now()), null),
+			new CourseOption(new CourseOptionId("Data bases", "Tuesday", LocalTime.now()), null),
+			new CourseOption(new CourseOptionId("Algorithms", "Thursday", LocalTime.now()), null),
+			new CourseOption(new CourseOptionId("Data structures", "Thursday", LocalTime.now()), null));
 	
 	private static List<Course> allCourses = List.of(new Course("Data structures", 1), new Course("Algorithms", 1),
 			  new Course("System Design", 1), new Course("Data bases", 1));

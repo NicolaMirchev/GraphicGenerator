@@ -5,6 +5,7 @@ package com.sportware.graphicgenerator.entities;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.time.LocalTime;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -25,9 +26,9 @@ public class CourseOptionId implements Serializable{
 	private String weekday;
 	
 	@Column(name = "starting_time")
-	private Instant startingTime;
+	private LocalTime startingTime;
 	
-	public CourseOptionId(String course, String weekday, Instant startingTime) {
+	public CourseOptionId(String course, String weekday, LocalTime startingTime) {
 		this.course = course;
 		this.weekday = weekday;
 		this.startingTime = startingTime;
@@ -71,11 +72,11 @@ public class CourseOptionId implements Serializable{
 		this.weekday = weekday;
 	}
 
-	public Instant getStartingTime() {
+	public LocalTime getStartingTime() {
 		return startingTime;
 	}
 
-	public void setStartingTime(Instant startingTime) {
+	public void setStartingTime(LocalTime startingTime) {
 		this.startingTime = startingTime;
 	}
 

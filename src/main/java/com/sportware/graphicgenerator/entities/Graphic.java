@@ -19,11 +19,17 @@ import javax.persistence.Table;
 @Table(name = "graphic")
 public class Graphic {
 	
+	/** Basic constructor which initialize the collection for the courses.
+	 * @param gapRate to be set a default value.
+	 */
 	public Graphic(int gapRate) {
 		this.gapRate = gapRate;
 		courses = new HashSet<>();
 	}
 	
+	/** Constructor, which copy other graphic object.
+	 * @param graphic other graphic.
+	 */
 	public Graphic(Graphic graphic) {
 		this.gapRate = graphic.getGapRate();
 		courses =  new HashSet<>(graphic.getCourses());
