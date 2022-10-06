@@ -60,31 +60,38 @@ public class CourseCollectionManipulator  {
 	 * @param allCourseOptions must be collection of aggregated collections for given course. 
 	 * (e.g - allCourseOption.get(0) -> returns collection where all elements have same course, which is different 
 	 * from the elements from the next collections.) 
-	 * @param allGraphics 
-	 * @param currentGraphic 
-	 * @param outCounter 
 	 * @return a collection of all possible combinations for the given courses and options.
 	 */
-	public static List<Graphic> graphicGenerator(List<List<CourseOption>> allCourseOptions, List<Graphic> allGraphics, Graphic currentGraphic, int outCounter) {
-		// outCounter starts from 0
+	public static List<Graphic> graphicGenerator(List<List<CourseOption>> allCourseOptions) {
 		
-		if(outCounter >= allCourseOptions.size()) {
+		List<Graphic> allGraphics = new ArrayList<>();
+		Graphic currentGraphic = new Graphic(0);
+		int courseCounter = 0;
+		
+		return graphicGeneratorRecursion(allCourseOptions,allGraphics,currentGraphic,courseCounter);
+		
+	}	
+	
+	private static List<Graphic> graphicGeneratorRecursion(List<List<CourseOption>> allCourseOptions, List<Graphic> allGraphics, Graphic currentGraphic, int courseCounter) {
+		// outCounter starts from 0						
+		if(courseCounter >= allCourseOptions.size()) {
 			allGraphics.add(new Graphic(currentGraphic));
-			outCounter--;
+			courseCounter--;
 			return allGraphics;
 		}
 		
-		for (CourseOption course : allCourseOptions.get(outCounter)) {
+		for (CourseOption course : allCourseOptions.get(courseCounter)) {
 			currentGraphic.getCourses().add(course);
 			// Recursion starts here
-			graphicGenerator(allCourseOptions, allGraphics, currentGraphic, outCounter + 1);
+			graphicGeneratorRecursion(allCourseOptions, allGraphics, currentGraphic, courseCounter + 1);
 			
 			currentGraphic.getCourses().remove(course);
 		}
 		
-		outCounter--;
+		courseCounter--;
 		
 		return allGraphics;
-	}
-	
+	}	
 }
+
+

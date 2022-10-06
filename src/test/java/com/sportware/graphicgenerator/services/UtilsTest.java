@@ -52,8 +52,7 @@ class UtilsTest {
 	
 	@Test
 	void generateGraphicCombinationsFunctionWorksCorrectly() {
-		List<Graphic> allPossibleGraphics = CourseCollectionManipulator.graphicGenerator(CourseCollectionManipulator.aggregateCoursesIntoDifferentCollection(allCourses, allCourseOptions),
-				new ArrayList<Graphic>(),new Graphic(0), 0);
+		List<Graphic> allPossibleGraphics = CourseCollectionManipulator.graphicGenerator(CourseCollectionManipulator.aggregateCoursesIntoDifferentCollection(allCourses, allCourseOptions));
 		
 		assertAll(() -> assertEquals(32 ,allPossibleGraphics.size()),
 				  () -> assertThat(allPossibleGraphics).allMatch(gr -> gr.getCourses().size() == 4));
