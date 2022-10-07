@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.sportware.graphicgenerator.services;
+package com.sportware.graphicgenerator.services.impl;
 
 import java.util.List;
 
@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.sportware.graphicgenerator.entities.Course;
 import com.sportware.graphicgenerator.repositories.CourseRepository;
+import com.sportware.graphicgenerator.services.CourseService;
 
 /**
  * The class contains implementation for the serice which executes operation with the "course" object.

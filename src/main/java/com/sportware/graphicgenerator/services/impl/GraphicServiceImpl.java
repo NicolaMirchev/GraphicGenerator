@@ -1,4 +1,4 @@
-package com.sportware.graphicgenerator.services;
+package com.sportware.graphicgenerator.services.impl;
 
 import java.util.List;
 
@@ -11,19 +11,14 @@ import com.sportware.graphicgenerator.entities.CourseOption;
 import com.sportware.graphicgenerator.entities.Graphic;
 import com.sportware.graphicgenerator.repositories.CourseOptionRepository;
 import com.sportware.graphicgenerator.repositories.CourseRepository;
+import com.sportware.graphicgenerator.services.GraphicService;
 import com.sportware.graphicgenerator.utils.CourseCollectionManipulator;
 
 /**
  *
  */
 @Service
-public class GraphicServiceImpl implements GraphicService {
-	
-	@Autowired
-	private CourseOptionRepository courseOptionRepository;
-	
-	@Autowired
-	private CourseRepository courseRepository;
+public class GraphicServiceImpl extends BaseCourseOptionsGraphic implements GraphicService {
 	
 	@Override
 	@Transactional

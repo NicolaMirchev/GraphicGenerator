@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.sportware.graphicgenerator.services;
+package com.sportware.graphicgenerator.services.impl;
 
 import java.util.List;
 
@@ -12,18 +12,13 @@ import org.springframework.transaction.annotation.Transactional;
 import com.sportware.graphicgenerator.entities.CourseOption;
 import com.sportware.graphicgenerator.repositories.CourseOptionRepository;
 import com.sportware.graphicgenerator.repositories.CourseRepository;
+import com.sportware.graphicgenerator.services.CourseOptionService;
 import com.sportware.graphicgenerator.utils.CourseCollectionManipulator;
 
 
 @Service
-public class CourseOptionServiceImpl implements CourseOptionService {
+public class CourseOptionServiceImpl extends BaseCourseOptionsGraphic implements CourseOptionService {
 	
-	@Autowired
-	private CourseOptionRepository courseOptionRepository;
-	
-	@Autowired
-	private CourseRepository courseRepository;
-
 	@Override
 	@Transactional
 	public List<CourseOption> findAllCourseOptions() {

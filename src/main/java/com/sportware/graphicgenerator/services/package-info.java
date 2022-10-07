@@ -1,4 +1,4 @@
 /**
- *  The package contains business logic for the application.
+ *  The package define all services contract for the application.
  */
 package com.sportware.graphicgenerator.services;
