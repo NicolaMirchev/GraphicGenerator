@@ -19,6 +19,22 @@ import javax.persistence.Table;
 @Table(name = "graphic")
 public class Graphic {
 	
+
+
+	@Id
+	private int id;
+
+	@Column(name = "gap_rate")
+	private int gapRate;
+	
+	@OneToMany(mappedBy ="graphic")
+	private Set<CourseOption> courses;
+
+	/**
+	 * Empty constructor for JPA.
+	 */
+	protected Graphic() {
+	}
 	/** Basic constructor which initialize the collection for the courses.
 	 * @param gapRate to be set a default value.
 	 */
@@ -34,17 +50,6 @@ public class Graphic {
 		this.gapRate = graphic.getGapRate();
 		courses =  new HashSet<>(graphic.getCourses());
 	}
-
-
-	@Id
-	private int id;
-
-	@Column(name = "gap_rate")
-	private int gapRate;
-	
-	@OneToMany(mappedBy ="graphic")
-	private Set<CourseOption> courses;
-
 	
 	public int getGapRate() {
 		return gapRate;
@@ -66,9 +71,4 @@ public class Graphic {
 	}
 
 
-	/**
-	 * Empty constructor for JPA.
-	 */
-	public Graphic() {
-	}
 }

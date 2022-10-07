@@ -4,12 +4,13 @@
 package com.sportware.graphicgenerator.entities;
 
 import java.io.Serializable;
-import java.time.Instant;
 import java.time.LocalTime;
 import java.util.Objects;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 /** 
  * A class which contains all fields from which composite key of the {@link CourseOption} entity is created.
@@ -17,18 +18,19 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class CourseOptionId implements Serializable{
 
-	private static final long serialVersionUID = -629056128654897953L;
+	private static final long serialVersionUID = -629056128654897953L;	
 	
+	@ManyToOne
+	@JoinColumn(name = "course_name")
+	private Course course;
 	
-	@Column(name = "course")
-	private String course;
-	
+	@Column(name = "weekday")
 	private String weekday;
 	
 	@Column(name = "starting_time")
 	private LocalTime startingTime;
 	
-	public CourseOptionId(String course, String weekday, LocalTime startingTime) {
+	public CourseOptionId(Course course, String weekday, LocalTime startingTime) {
 		this.course = course;
 		this.weekday = weekday;
 		this.startingTime = startingTime;
@@ -36,7 +38,7 @@ public class CourseOptionId implements Serializable{
 	/**
 	 *  Empty constructor, required by JPA.
 	 */
-	public CourseOptionId() {
+	protected CourseOptionId() {
 	}
 	@Override
 	public int hashCode() {
@@ -56,11 +58,11 @@ public class CourseOptionId implements Serializable{
 				&& Objects.equals(weekday, other.weekday);
 	}
 
-	public String getCourse() {
+	public Course getCourse() {
 		return course;
 	}
 
-	public void setCourse(String course) {
+	public void setCourse(Course course) {
 		this.course = course;
 	}
 

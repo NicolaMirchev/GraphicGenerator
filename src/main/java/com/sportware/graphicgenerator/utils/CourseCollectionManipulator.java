@@ -40,7 +40,7 @@ public class CourseCollectionManipulator  {
 			List<CourseOption> currentCourseAllOptions = new ArrayList<>();
 			
 			allCoursesOptions.forEach(courseOption -> {
-				if(course.getName().contentEquals(courseOption.getId().getCourse())) {
+				if(course.getName().contentEquals(courseOption.getId().getCourse().getName())) {
 					currentCourseAllOptions.add(courseOption);
 				}
 				
