@@ -14,6 +14,8 @@ public class GraphicgeneratorApplication {
 	 */
 	public static final String SINGLE_DAY_ALG = "singleday";
 	
+	public static final String LESS_GAPS_ALG = "lessgaps";
+	
 	/**
 	 *  Const which defines the default duration of all courses.
 	 */

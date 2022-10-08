@@ -20,6 +20,7 @@ import com.sportware.graphicgenerator.repositories.CourseOptionRepository;
 import com.sportware.graphicgenerator.repositories.CourseRepository;
 import com.sportware.graphicgenerator.services.GraphicService;
 import com.sportware.graphicgenerator.utils.CourseCollectionManipulator;
+import com.sportware.graphicgenerator.utils.GraphicSelector;
 
 /**
  *
@@ -41,12 +42,16 @@ public class GraphicServiceImpl extends BaseCourseOptionsGraphic implements Grap
 
 	@Override
 	public Graphic findBestGraphicForOption(String algorithmOption) {
-		// TODO Auto-generated method stub
+		List<Graphic> allPossibleGraphics = findAllPossibleCombinations();
+		
+		if(algorithmOption.compareToIgnoreCase(GraphicgeneratorApplication.SINGLE_DAY_ALG) == 0) {
+			return GraphicSelector.singleDayPrefferedGraphic(allPossibleGraphics);
+		}
+		else if(algorithmOption.compareToIgnoreCase("lessgaps") == 0) {
+			return GraphicSelector.moreDaysWithSmallerGapsBetweenCoursesPrefferedGraphic(allPossibleGraphics);
+		}
+		
 		return null;
 	}
-	
-	
-
-	
 
 }
