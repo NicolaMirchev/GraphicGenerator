@@ -46,4 +46,5 @@ class UtilsTest {
 				  () -> assertThat(allPossibleGraphics).allMatch(gr -> gr.getCourses().size() == 4));
 	}
 
+
 }

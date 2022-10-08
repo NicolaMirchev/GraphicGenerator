@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 
 import com.sportware.graphicgenerator.GraphicgeneratorApplication;
 import com.sportware.graphicgenerator.Weekdays;
@@ -23,13 +24,33 @@ public class GraphicSelector {
 	private GraphicSelector() {
 	}
 	
-	// The function set the gap rate of every graphic, based on a rule and then pick the graphic with smallest gap rate.
-	// It is public - to be tested.
-	public static Graphic findBestGraphicForSingleDaySolution(List<Graphic> allGraphics) {
+	/** The function invokes the algorithm of defining gap rate with gap value of a day - 21600 seconds(6 hours)
+	 * , which means that the gap rate of all graphics between gaps of the courses and attendance to the university. 
+	 * @param allGraphics all courses.
+	 * @return the best graphic for this option.
+	 */
+	public static Graphic singleDayPrefferedGraphic(List<Graphic> allGraphics) {
+		return findGraphicWithSmallestGapsBetweenCourses(allGraphics, 21600);
+	}
+	
+	/** The function invokes the algorithm of defining gap rate with gap value of a day - 0, which means that the gap rate of all programms 
+	 * is defined only between gaps of the courses. 
+	 * @param allGraphics all courses.
+	 * @return the best graphic for this option.
+	 */
+	public static Graphic moreDaysWithSmallerGapsBetweenCoursesPrefferedGraphic(List<Graphic> allGraphics) {
+		return findGraphicWithSmallestGapsBetweenCourses(allGraphics, 0);
+	}
+	
+	/**	The function set the gap rate of every graphic, based on a rule and then pick the graphic with smallest gap rate.
+	 * @param allGraphics list of all possible graphics.
+	 * @param singleDayDefaultGapValue the default gap which a day gives to a graphic (E.g if in monday you have gap of 5 hours between courses, or
+	 * you can have only one course on monday and one on tuesday, without any gaps(this is chosen by the user)).
+	 * @return best graphic based on the default gap for whole day presenting the university and all combination of graphics.
+	 */
+	private static Graphic findGraphicWithSmallestGapsBetweenCourses(List<Graphic> allGraphics,int singleDayDefaultGapValue) {
 		
-		// Every day gives the graphic +6 hours(21600 seconds) gap rate, so if in one day there are two courses with 5 hours of gap - this is 
-		// better than one of the courses to be alone on the next day.
-		int singleDayAlgorithmEveryDayGapValue = 21600;
+		int singleDayAlgorithmEveryDayGapValue = singleDayDefaultGapValue;
 		
 		Graphic graphicWithSmallestGapRate = allGraphics.get(0);
 		
@@ -40,24 +61,22 @@ public class GraphicSelector {
 				currentGraphic.setGapRate(Integer.MAX_VALUE);
 			}
 			else {
-				coursesByDay.forEach((day, courses) -> {
-					int currentGraphicGapRate = singleDayAlgorithmEveryDayGapValue;
-					
+
+				coursesByDay.forEach((day, courses) -> {	
+					int currentDayGapRate = singleDayAlgorithmEveryDayGapValue;
 					// Calculate more gap rate only if for the current day there are more than one courses planned.
 					if (courses.size() > 1) {
 						for(int i = 0 ; i < courses.size() - 1; i++) {
 							int gapBetweenTwoCourses = 0;
-							int endOfThisCoursInSeconds = courses.get(i).getId().getStartingTime().
+							int endOfThisCoursInSecondsOfDay = courses.get(i).getId().getStartingTime().
 									plusMinutes(GraphicgeneratorApplication.DEFAULT_COURSE_DURATION_MINUTES).toSecondOfDay();
 							
 							// Add gap rate, which is the seconds between the two courses.
-							gapBetweenTwoCourses += courses.get(i + 1).getId().getStartingTime().toSecondOfDay() - endOfThisCoursInSeconds;
-							currentGraphicGapRate += gapBetweenTwoCourses;
+							gapBetweenTwoCourses += courses.get(i + 1).getId().getStartingTime().toSecondOfDay() - endOfThisCoursInSecondsOfDay;
+							currentDayGapRate += gapBetweenTwoCourses;
 						}
-					}
-					
-						currentGraphic.setGapRate(currentGraphicGapRate);
-						
+					}							
+					currentGraphic.setGapRate(currentGraphic.getGapRate() + currentDayGapRate);
 				});
 				if(currentGraphic.getGapRate() < graphicWithSmallestGapRate.getGapRate()) {
 					graphicWithSmallestGapRate = currentGraphic;
