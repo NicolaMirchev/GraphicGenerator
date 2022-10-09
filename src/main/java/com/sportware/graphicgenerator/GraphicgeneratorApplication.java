@@ -1,8 +1,5 @@
 package com.sportware.graphicgenerator;
 
-import java.time.LocalTime;
-import java.time.temporal.TemporalAmount;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
