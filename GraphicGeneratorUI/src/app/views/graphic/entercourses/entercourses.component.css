@@ -1,0 +1,19 @@
+.container{
+    margin-left: 3vw;
+    margin-right: 3vw;
+}
+.rules{
+    margin: 1vw;
+}
+
+ .input {
+    color: aliceblue;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #292121;
+    resize: none;
+}
+mat-grid-tile{
+    height: auto;
+}      

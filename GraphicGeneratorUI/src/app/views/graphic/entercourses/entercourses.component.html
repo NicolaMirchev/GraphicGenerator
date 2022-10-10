@@ -1,0 +1,64 @@
+<section class="container">
+    
+        <mat-card class="rules">
+            <h3>Please enter your courses below</h3>
+            <h4>Rules for entering courses.</h4>
+            <ul>
+                <li>
+                    Consider lecture and excercises as different courses. E.g - "Data structures" is one course and
+                    "Data structures exercise" is another.</li>
+                    <br>
+                <li>
+                    If you have more than one lecture of a kind in the week (speaking of lectures for one group)
+                    (E.G. Data structures in Monday and in Friday. And this is the lecture "Data structures" for group 1),
+                    consider them as together component and write them as two courses, but DON'T mix the groups!. (E.G - 
+                    "Data structures 1" and "Data structures 2" in the form below.) 
+                </li>
+            </ul>
+        </mat-card>
+        <mat-card>
+          <mat-grid-list cols="3">
+                <mat-grid-tile>
+                   <form class="example-form" #simpleForm="ngForm" (ngSubmit) ="submitCourse(simpleForm.value)">
+                        <mat-label>Enter your course here</mat-label>
+                        <br><br>
+                        <input class="input" ngModel name="course" type="text" >
+     
+                          <button mat-button color="accent" type="submit">Submit course</button>  
+                    </form>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <cdk-accordion class="example-accordion">
+                        <cdk-accordion-item
+                          *ngFor="let item of allCourses; let index = index;"
+                          #accordionItem="cdkAccordionItem"
+                          class="example-accordion-item"
+                          role="button"
+                          tabindex="0"
+                          [attr.id]="'accordion-header-' + index"
+                          [attr.aria-expanded]="accordionItem.expanded"
+                          [attr.aria-controls]="'accordion-body-' + index">
+                          <div class="example-accordion-item-header" (click)="accordionItem.toggle()">
+                            {{ item }}
+                            <span class="example-accordion-item-description">
+                              Click to {{ accordionItem.expanded ? 'close' : 'open' }}
+                            </span>
+                          </div>
+                          <div
+                            class="example-accordion-item-body"
+                            role="region"
+                            [style.display]="accordionItem.expanded ? '' : 'none'"
+                            [attr.id]="'accordion-body-' + index"
+                            [attr.aria-labelledby]="'accordion-header-' + index">
+                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perferendis
+                            excepturi incidunt ipsum deleniti labore, tempore non nam doloribus blanditiis
+                            veritatis illo autem iure aliquid ullam rem tenetur deserunt velit culpa?
+                          </div>
+                        </cdk-accordion-item>
+                      </cdk-accordion>
+                </mat-grid-tile>
+
+            </mat-grid-list>
+       </mat-card>
+   
+</section>
