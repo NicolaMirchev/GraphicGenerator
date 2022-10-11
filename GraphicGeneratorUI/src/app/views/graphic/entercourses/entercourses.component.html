@@ -17,14 +17,20 @@
             </ul>
         </mat-card>
         <mat-card>
-          <mat-grid-list cols="3">
+          <mat-grid-list cols="2">
                 <mat-grid-tile>
-                   <form class="example-form" #simpleForm="ngForm" (ngSubmit) ="submitCourse(simpleForm.value)">
+                   <form class="example-form" #simpleForm="ngForm"
+                    (ngSubmit) ="submitCourse(simpleForm.value)"
+                   >              
                         <mat-label>Enter your course here</mat-label>
                         <br><br>
-                        <input class="input" ngModel name="course" type="text" >
+                        <input class="input" required minlength="3"
+                         ngModel id="name"
+                         name="course"
+                         type="text"
+                         [(ngModel)]="course" #name="ngModel" >
      
-                          <button mat-button color="accent" type="submit">Submit course</button>  
+                        <button mat-button color="accent" type="submit" *ngIf="!name.invalid">Submit course</button>  
                     </form>
                 </mat-grid-tile>
                 <mat-grid-tile>
@@ -41,7 +47,7 @@
                           <div class="example-accordion-item-header" (click)="accordionItem.toggle()">
                             {{ item }}
                             <span class="example-accordion-item-description">
-                              Click to {{ accordionItem.expanded ? 'close' : 'open' }}
+                            (click to {{ accordionItem.expanded ? 'close' : 'open' }})
                             </span>
                           </div>
                           <div
@@ -50,9 +56,7 @@
                             [style.display]="accordionItem.expanded ? '' : 'none'"
                             [attr.id]="'accordion-body-' + index"
                             [attr.aria-labelledby]="'accordion-header-' + index">
-                            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Perferendis
-                            excepturi incidunt ipsum deleniti labore, tempore non nam doloribus blanditiis
-                            veritatis illo autem iure aliquid ullam rem tenetur deserunt velit culpa?
+                                <button>Add option</button>
                           </div>
                         </cdk-accordion-item>
                       </cdk-accordion>

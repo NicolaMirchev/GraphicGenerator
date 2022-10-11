@@ -16,4 +16,7 @@
 }
 mat-grid-tile{
     height: auto;
-}      
+}     
+.example-accordion-item :hover{
+    color: #ccc;
+} 

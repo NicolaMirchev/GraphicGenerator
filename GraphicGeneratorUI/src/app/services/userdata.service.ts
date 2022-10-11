@@ -23,17 +23,15 @@ export class UserdataService {
     if(localStorage.getItem('courses') != null){
       return JSON.parse(localStorage.getItem("courses") ?? '') ;
     }
+    else{
+      return [];
+    }
   }
 
   // The function accept a course model and add it to the collection in the local storage.
   setCourse(course : unknown){
     let existingEntries = this.getCourses();
-    if(existingEntries != null){
       existingEntries.push(course);
-    }
-    else{
-      existingEntries = [course]
-    }
     this.setLocalStorageCourseArray(existingEntries);
   }
 

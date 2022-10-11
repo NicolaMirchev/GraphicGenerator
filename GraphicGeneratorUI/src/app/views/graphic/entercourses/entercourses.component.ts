@@ -23,7 +23,9 @@ export class EntercoursesComponent implements OnInit {
   }
 
   submitCourse(value : any){
-    console.log(value.course);
-    this.service.setCourse(value.course);
+    const course = value.course;
+    this.service.setCourse(course);
+    this.allCourses.push(course);
+    this.ngOnInit();
   }
 }
