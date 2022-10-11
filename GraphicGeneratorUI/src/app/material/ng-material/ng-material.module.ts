@@ -7,7 +7,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {ReactiveFormsModule} from '@angular/forms';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {CdkAccordionModule} from '@angular/cdk/accordion';
-
+import {MatSelectModule} from '@angular/material/select';
 
 
 @NgModule({
@@ -20,7 +20,8 @@ import {CdkAccordionModule} from '@angular/cdk/accordion';
     MatFormFieldModule,
     ReactiveFormsModule,
     MatGridListModule,
-    CdkAccordionModule
+    CdkAccordionModule,
+    MatSelectModule
   ],
   exports : [MatToolbarModule,
     MatButtonModule,
@@ -28,6 +29,7 @@ import {CdkAccordionModule} from '@angular/cdk/accordion';
     MatFormFieldModule,
     ReactiveFormsModule,
     MatGridListModule,
-    CdkAccordionModule]
+    CdkAccordionModule,
+    MatSelectModule]
 })
 export class NgMaterialModule { }
