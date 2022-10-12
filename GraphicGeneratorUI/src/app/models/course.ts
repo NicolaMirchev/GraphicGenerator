@@ -1,3 +1,6 @@
-interface Course{
-    name : string,
+interface CourseOption {
+  nameOfTheCourse: string;
+  startingHours: number;
+  startingMinutes: number;
+  weekDay: string;
 }
