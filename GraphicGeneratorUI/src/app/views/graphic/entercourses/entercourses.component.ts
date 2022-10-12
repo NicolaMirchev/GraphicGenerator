@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
 import { CoursesService } from 'src/app/services/courses.service';
-import { enableRipple } from '@syncfusion/ej2-base';
-
-enableRipple(true);
+import { CourseoptionsService } from 'src/app/services/courseoptions.service';
+import { CourseOption } from 'src/app/models/courseOption';
 
 @Component({
   selector: 'app-entercourses',
@@ -18,19 +16,21 @@ export class EntercoursesComponent implements OnInit {
   course = '';
 
   allCourses: string[] = [];
-  addCourse = this.fb.group({
-    name: '',
-  });
+  allCourseOptions: CourseOption[] = [];
 
-  constructor(private fb: FormBuilder, private service: CoursesService) {}
+  constructor(
+    private coursesService: CoursesService,
+    private courseOptionsService: CourseoptionsService
+  ) {}
 
   ngOnInit(): void {
-    this.allCourses = this.service.getCourses();
+    this.allCourses = this.coursesService.getCourses();
+    this.allCourseOptions = this.courseOptionsService.getCourseOptions();
   }
 
   submitCourse(value: any) {
     const course = value.course;
-    this.service.setCourse(course);
+    this.coursesService.setCourse(course);
     this.allCourses.push(course);
     this.ngOnInit();
 
@@ -38,8 +38,21 @@ export class EntercoursesComponent implements OnInit {
   }
   removeCourse(value: any) {
     const course = value.course;
-    this.service.removeCourse(course);
+    this.coursesService.removeCourse(course);
 
+    this.ngOnInit();
+  }
+
+  addCourseOption(course: string) {
+    const option: CourseOption = {
+      nameOfTheCourse: course,
+      startingHours: this.hours,
+      startingMinutes: this.minutes,
+      weekDay: this.selectedWeekday,
+    };
+
+    this.courseOptionsService.setCourseOption(option);
+    this.selectedWeekday = '';
     this.ngOnInit();
   }
 }
