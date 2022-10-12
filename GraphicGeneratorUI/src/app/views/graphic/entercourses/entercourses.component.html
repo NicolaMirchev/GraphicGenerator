@@ -1,78 +1,130 @@
 <section class="container">
-    
-        <mat-card class="rules">
-            <h3>Please enter your courses below</h3>
-            <h4>Rules for entering courses.</h4>
-            <ul>
-                <li>
-                    Consider lecture and excercises as different courses. E.g - "Data structures" is one course and
-                    "Data structures exercise" is another.</li>
-                    <br>
-                <li>
-                    If you have more than one lecture of a kind in the week (speaking of lectures for one group)
-                    (E.G. Data structures in Monday and in Friday. And this is the lecture "Data structures" for group 1),
-                    consider them as together component and write them as two courses, but DON'T mix the groups!. (E.G - 
-                    "Data structures 1" and "Data structures 2" in the form below.) 
-                </li>
-            </ul>
-        </mat-card>
-        <mat-card>
-          <mat-grid-list cols="2">
-                <mat-grid-tile>
-                   <form class="example-form" #simpleForm="ngForm"
-                    (ngSubmit) ="submitCourse(simpleForm.value)"
-                   >              
-                        <mat-label>Enter your course here</mat-label>
-                        <br><br>
-                        <input class="input" required minlength="3"
-                         ngModel id="name"
-                         name="course"
-                         type="text"
-                         [(ngModel)]="course" #name="ngModel" >
-     
-                        <button mat-button color="accent" type="submit" *ngIf="!name.invalid">Submit course</button>  
-                    </form>
-                </mat-grid-tile>
-                <mat-grid-tile>
-                    <cdk-accordion class="example-accordion">
-                        <cdk-accordion-item
-                          *ngFor="let item of allCourses; let index = index;"
-                          #accordionItem="cdkAccordionItem"
-                          class="example-accordion-item"
-                          role="button"
-                          tabindex="0"
-                          [attr.id]="'accordion-header-' + index"
-                          [attr.aria-expanded]="accordionItem.expanded"
-                          [attr.aria-controls]="'accordion-body-' + index">
-                          <div class="example-accordion-item-header" (click)="accordionItem.toggle()">
-                            {{ item }}
-                            <span class="example-accordion-item-description">
-                            (click to {{ accordionItem.expanded ? 'close' : 'open' }})
-                            </span>
-                          </div>
-                          <div
-                            class="example-accordion-item-body"
-                            role="region"
-                            [style.display]="accordionItem.expanded ? '' : 'none'"
-                            [attr.id]="'accordion-body-' + index"
-                            [attr.aria-labelledby]="'accordion-header-' + index">
-                            <h4>Select Weekday</h4>
-                            <select matNativeControl required>
-                              <option value="monday">Monday</option>
-                              <option value="tuesday">Tuesday</option>
-                              <option value="wednesday">Wednesday</option>
-                              <option value="thursday">Thursday</option>
-                              <option value="friday">Friday</option>
-                              <option value="saturday">Saturday</option>
-                              <option value="sunday">Sunday</option>
-                            </select>
-                                <button>Add option</button>
-                          </div>
-                        </cdk-accordion-item>
-                      </cdk-accordion>
-                </mat-grid-tile>
+  <mat-card class="rules">
+    <h3>Please enter your courses below</h3>
+    <h4>Rules for entering courses.</h4>
+    <ul>
+      <li>
+        Consider lecture and excercises as different courses. E.g - "Data
+        structures" is one course and "Data structures exercise" is another.
+      </li>
+      <br />
+      <li>
+        If you have more than one lecture of a kind in the week (speaking of
+        lectures for one group) (E.G. Data structures in Monday and in Friday.
+        And this is the lecture "Data structures" for group 1), consider them as
+        together component and write them as two courses, but DON'T mix the
+        groups!. (E.G - "Data structures 1" and "Data structures 2" in the form
+        below.)
+      </li>
+    </ul>
+  </mat-card>
 
-            </mat-grid-list>
-       </mat-card>
-   
+  <mat-card>
+    <div class="enter-course">
+      <form
+        class="example-form"
+        #simpleForm="ngForm"
+        (ngSubmit)="submitCourse(simpleForm.value)"
+      >
+        <mat-label>Enter your course here</mat-label>
+        <br /><br />
+        <input
+          class="input"
+          required
+          minlength="3"
+          ngModel
+          id="name"
+          name="course"
+          type="text"
+          [(ngModel)]="course"
+          #name="ngModel"
+        />
+
+        <button mat-button color="accent" type="submit" *ngIf="!name.invalid">
+          Submit course
+        </button>
+      </form>
+    </div>
+  </mat-card>
+
+  <mat-card>
+    <cdk-accordion class="example-accordion">
+      <cdk-accordion-item
+        *ngFor="let item of allCourses; let index = index"
+        #accordionItem="cdkAccordionItem"
+        class="example-accordion-item"
+        role="button"
+        tabindex="0"
+        [attr.id]="'accordion-header-' + index"
+        [attr.aria-expanded]="accordionItem.expanded"
+        [attr.aria-controls]="'accordion-body-' + index"
+      >
+        <div
+          class="example-accordion-item-header"
+          (click)="accordionItem.toggle()"
+        >
+          {{ item }}
+          <span class="example-accordion-item-description">
+            (click to {{ accordionItem.expanded ? "close" : "open" }})
+          </span>
+          <button mat-button color="warn" (click)="removeCourse(item)">
+            Remove
+          </button>
+        </div>
+        <div
+          class="example-accordion-item-body"
+          role="region"
+          [style.display]="accordionItem.expanded ? '' : 'none'"
+          [attr.id]="'accordion-body-' + index"
+          [attr.aria-labelledby]="'accordion-header-' + index"
+        >
+          <h6>Select Weekday</h6>
+          <section>
+            <select
+              matNativeControl
+              required
+              class="select"
+              matNativeControl
+              [(ngModel)]="selectedWeekday"
+              name="weekday"
+            >
+              <option value="monday">Monday</option>
+              <option value="tuesday">Tuesday</option>
+              <option value="wednesday">Wednesday</option>
+              <option value="thursday">Thursday</option>
+              <option value="friday">Friday</option>
+              <option value="saturday">Saturday</option>
+              <option value="sunday">Sunday</option>
+            </select>
+          </section>
+
+          <section class="example-section">
+            <mat-form-field
+              class="example-margin example-width"
+              appearance="fill"
+            >
+              <mat-label>Select Hours</mat-label>
+              <input
+                matInput
+                type="number"
+                min="1"
+                max="24"
+                [(ngModel)]="hours"
+              />
+            </mat-form-field>
+            <mat-form-field
+              class="example-margin example-width"
+              min="1"
+              max="60"
+              appearance="fill"
+            >
+              <mat-label>Select minutes</mat-label>
+              <input matInput type="number" [(ngModel)]="minutes" />
+            </mat-form-field>
+          </section>
+          <button>Add option</button>
+        </div>
+      </cdk-accordion-item>
+    </cdk-accordion>
+  </mat-card>
 </section>

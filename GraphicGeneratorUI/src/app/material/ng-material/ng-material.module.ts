@@ -4,6 +4,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
 import {ReactiveFormsModule} from '@angular/forms';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {CdkAccordionModule} from '@angular/cdk/accordion';
@@ -18,6 +19,7 @@ import {MatSelectModule} from '@angular/material/select';
     MatButtonModule,
     MatCardModule,
     MatFormFieldModule,
+    MatInputModule,
     ReactiveFormsModule,
     MatGridListModule,
     CdkAccordionModule,
@@ -30,6 +32,7 @@ import {MatSelectModule} from '@angular/material/select';
     ReactiveFormsModule,
     MatGridListModule,
     CdkAccordionModule,
-    MatSelectModule]
+    MatSelectModule,
+    MatInputModule]
 })
 export class NgMaterialModule { }

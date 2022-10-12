@@ -1,22 +1,35 @@
-.container{
-    margin-left: 3vw;
-    margin-right: 3vw;
+.container {
+  margin-left: 3vw;
+  margin-right: 3vw;
 }
-.rules{
-    margin: 1vw;
+mat-card {
+  margin: 1vw;
+}
+.enter-course {
+  text-align: center;
+  justify-content: center;
+  display: inline;
 }
 
- .input {
-    color: aliceblue;
-    box-sizing: border-box;
-    border: 2px solid #ccc;
-    border-radius: 4px;
-    background-color: #292121;
-    resize: none;
+.input {
+  color: aliceblue;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #292121;
+  resize: none;
 }
-mat-grid-tile{
-    height: auto;
-}     
-.example-accordion-item :hover{
-    color: #ccc;
-} 
+mat-grid-tile {
+  height: auto;
+}
+.example-accordion-item :hover {
+  color: #ccc;
+}
+.select {
+  color: rgb(0, 0, 0);
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  background-color: #f1ebeb;
+  resize: none;
+}
