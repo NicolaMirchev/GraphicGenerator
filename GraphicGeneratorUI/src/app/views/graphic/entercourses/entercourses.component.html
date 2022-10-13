@@ -129,4 +129,17 @@
       </cdk-accordion-item>
     </cdk-accordion>
   </mat-card>
+
+  <mat-card>
+    <mat-list>
+      <mat-list-item *ngFor="let option of allCourseOptions">
+        {{ option.nameOfTheCourse }} - {{ option.weekday }} -
+        {{ option.startingHours }} :
+        {{ option.startingMinutes }}
+        <button mat-button color="warn" (click)="removeCourseOption(option)">
+          Remove
+        </button>
+      </mat-list-item>
+    </mat-list>
+  </mat-card>
 </section>

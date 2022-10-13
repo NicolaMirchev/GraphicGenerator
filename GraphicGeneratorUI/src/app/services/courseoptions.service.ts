@@ -17,7 +17,7 @@ export class CourseoptionsService {
           c.nameOfTheCourse == courseOption.nameOfTheCourse &&
           c.startingHours == courseOption.startingHours &&
           c.startingMinutes == courseOption.startingMinutes &&
-          c.weekDay == courseOption.weekDay
+          c.weekday == courseOption.weekday
       ),
       1
     );

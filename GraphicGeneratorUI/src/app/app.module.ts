@@ -25,6 +25,7 @@ import { FormsModule } from '@angular/forms';
     BrowserAnimationsModule,
     NgMaterialModule,
     FormsModule,
+    BrowserModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

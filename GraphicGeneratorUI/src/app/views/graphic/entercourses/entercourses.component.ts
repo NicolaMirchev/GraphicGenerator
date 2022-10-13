@@ -24,8 +24,14 @@ export class EntercoursesComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.allCourses = this.coursesService.getCourses();
-    this.allCourseOptions = this.courseOptionsService.getCourseOptions();
+    this.allCourses = this.coursesService
+      .getCourses()
+      .sort((first, second) => first.localeCompare(second));
+    this.allCourseOptions = this.courseOptionsService
+      .getCourseOptions()
+      .sort((first, second) =>
+        first.nameOfTheCourse.localeCompare(second.nameOfTheCourse)
+      );
   }
 
   submitCourse(value: any) {
@@ -36,10 +42,19 @@ export class EntercoursesComponent implements OnInit {
 
     this.course = '';
   }
+
+  // The function remove given course and all course options related to it.
   removeCourse(value: any) {
     const course = value.course;
     this.coursesService.removeCourse(course);
 
+    // Filter all coure options and get those for with name of the course which is being removed.
+    // Remove each of them.
+    for (let courseOption of this.allCourseOptions.filter(
+      (option) => option.nameOfTheCourse === course
+    )) {
+      this.courseOptionsService.removeCourseOption(courseOption);
+    }
     this.ngOnInit();
   }
 
@@ -48,11 +63,16 @@ export class EntercoursesComponent implements OnInit {
       nameOfTheCourse: course,
       startingHours: this.hours,
       startingMinutes: this.minutes,
-      weekDay: this.selectedWeekday,
+      weekday: this.selectedWeekday,
     };
 
     this.courseOptionsService.setCourseOption(option);
     this.selectedWeekday = '';
+    this.ngOnInit();
+  }
+
+  removeCourseOption(option: CourseOption) {
+    this.courseOptionsService.removeCourseOption(option);
     this.ngOnInit();
   }
 }

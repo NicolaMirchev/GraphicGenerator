@@ -2,5 +2,5 @@ export interface CourseOption {
   nameOfTheCourse: string;
   startingHours: number;
   startingMinutes: number;
-  weekDay: string;
+  weekday: string;
 }
