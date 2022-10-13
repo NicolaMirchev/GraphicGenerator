@@ -16,6 +16,13 @@ export class GenerategraphicDialogComponent implements OnInit {
 
   generateGraphic() {
     // await data from backend and visualize it.
+    this.graphicService
+      .getBestGraphic(this.selectedAlgorithm, this.duration)
+      .subscribe({
+        next: (result) => {
+          console.log(result);
+        },
+      });
     console.log(this.duration + ' ' + this.selectedAlgorithm);
   }
 }

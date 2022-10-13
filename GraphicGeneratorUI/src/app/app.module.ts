@@ -10,7 +10,7 @@ import { NgMaterialModule } from './material/ng-material/ng-material.module';
 import { HomeInfoComponent } from './views/home-info/home-info.component';
 import { EntercoursesComponent } from './views/graphic/entercourses/entercourses.component';
 import { FormsModule } from '@angular/forms';
-import { HttpClient } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { GenerategraphicDialogComponent } from './views/graphic/entercourses/generategraphic-dialog/generategraphic-dialog.component';
 
 @NgModule({
@@ -29,7 +29,7 @@ import { GenerategraphicDialogComponent } from './views/graphic/entercourses/gen
     NgMaterialModule,
     FormsModule,
     BrowserModule,
-    HttpClient,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
