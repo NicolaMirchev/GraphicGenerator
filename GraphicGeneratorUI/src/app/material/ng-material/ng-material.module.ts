@@ -8,6 +8,8 @@ import { MatInputModule } from '@angular/material/input';
 import { CdkAccordionModule } from '@angular/cdk/accordion';
 import { MatSelectModule } from '@angular/material/select';
 import { MatListModule } from '@angular/material/list';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatRadioModule } from '@angular/material/radio';
 
 @NgModule({
   declarations: [],
@@ -31,6 +33,8 @@ import { MatListModule } from '@angular/material/list';
     MatSelectModule,
     MatInputModule,
     MatListModule,
+    MatDialogModule,
+    MatRadioModule,
   ],
 })
 export class NgMaterialModule {}

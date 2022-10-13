@@ -38,7 +38,7 @@ public class GraphicRestController {
 	 * @param algorithmOption the client opinion of best graphic.
 	 * @return best graphic for the client.
 	 */
-	@GetMapping("bestFit")
+	@GetMapping("best")
 	public Graphic findBestGraphicForOption(@RequestParam(defaultValue = GraphicgeneratorApplication.SINGLE_DAY_ALG) String algorithmOption) {
 		return service.findBestGraphicForOption(algorithmOption);
 	}

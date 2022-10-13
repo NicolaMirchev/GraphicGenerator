@@ -1,0 +1,52 @@
+<h2 mat-dialog-title>Last Details</h2>
+<mat-dialog-content class="mat-typography">
+  <h3>
+    Please choose single course duration and preffered way to attend the
+    university.
+  </h3>
+  <form class="example-form" #simpleForm="ngForm">
+    <mat-label>Enter single lecture duration in minutes.</mat-label>
+    <br /><br />
+    <input
+      class="input"
+      required
+      minlength="2"
+      ngModel
+      id="duration"
+      name="duration"
+      type="number"
+      [(ngModel)]="duration"
+      #name="ngModel"
+    />
+    <div>
+      <mat-radio-group
+        aria-label="Select an option"
+        name="selectedAlgorithm"
+        [(ngModel)]="selectedAlgorithm"
+        requiered
+      >
+        <mat-radio-button value="singleDay">
+          Single Day - If you preffer your lecture to be in one day (Maybe one
+          lecture in the morning, after that gap of' + '5 hours and another
+          lecture, instead of one one lecture a day, two different days.)
+        </mat-radio-button>
+        <mat-radio-button value="lessGaps">
+          Less Gaps - If you preffer less gaps during the day, but less lectures
+          a day, so more days going to the university.
+        </mat-radio-button>
+      </mat-radio-group>
+    </div>
+    <button
+      mat-button
+      color="accent"
+      type="submit"
+      *ngIf="duration > 10 && selectedAlgorithm.length > 5"
+      (click)="generateGraphic()"
+    >
+      Generate Graphic
+    </button>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+</mat-dialog-actions>

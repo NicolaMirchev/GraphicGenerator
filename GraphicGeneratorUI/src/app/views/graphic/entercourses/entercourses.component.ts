@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CoursesService } from 'src/app/services/courses.service';
 import { CourseoptionsService } from 'src/app/services/courseoptions.service';
 import { CourseOption } from 'src/app/models/courseOption';
+import { MatDialog } from '@angular/material/dialog';
+import { GenerategraphicDialogComponent } from './generategraphic-dialog/generategraphic-dialog.component';
 
 @Component({
   selector: 'app-entercourses',
@@ -20,7 +22,8 @@ export class EntercoursesComponent implements OnInit {
 
   constructor(
     private coursesService: CoursesService,
-    private courseOptionsService: CourseoptionsService
+    private courseOptionsService: CourseoptionsService,
+    public dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -45,13 +48,12 @@ export class EntercoursesComponent implements OnInit {
 
   // The function remove given course and all course options related to it.
   removeCourse(value: any) {
-    const course = value.course;
-    this.coursesService.removeCourse(course);
+    this.coursesService.removeCourse(value);
 
     // Filter all coure options and get those for with name of the course which is being removed.
     // Remove each of them.
     for (let courseOption of this.allCourseOptions.filter(
-      (option) => option.nameOfTheCourse === course
+      (option) => option.nameOfTheCourse === value
     )) {
       this.courseOptionsService.removeCourseOption(courseOption);
     }
@@ -74,5 +76,9 @@ export class EntercoursesComponent implements OnInit {
   removeCourseOption(option: CourseOption) {
     this.courseOptionsService.removeCourseOption(option);
     this.ngOnInit();
+  }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(GenerategraphicDialogComponent);
   }
 }
