@@ -1,25 +1,20 @@
 package com.sportware.graphicgenerator.services.impl;
 
-import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.function.Function;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.sportware.graphicgenerator.GraphicgeneratorApplication;
-import com.sportware.graphicgenerator.Weekdays;
+
+import com.sportware.graphicgenerator.dto.BestGraphicRequieredInfoDto;
+import com.sportware.graphicgenerator.dto.GraphicDto;
 import com.sportware.graphicgenerator.entities.Course;
 import com.sportware.graphicgenerator.entities.CourseOption;
 import com.sportware.graphicgenerator.entities.Graphic;
-import com.sportware.graphicgenerator.repositories.CourseOptionRepository;
-import com.sportware.graphicgenerator.repositories.CourseRepository;
 import com.sportware.graphicgenerator.services.GraphicService;
 import com.sportware.graphicgenerator.utils.CourseCollectionManipulator;
+import com.sportware.graphicgenerator.utils.DtoWithEntityConvertor;
 import com.sportware.graphicgenerator.utils.GraphicSelector;
 
 /**
@@ -41,17 +36,43 @@ public class GraphicServiceImpl extends BaseCourseOptionsGraphic implements Grap
 	}
 
 	@Override
-	public Graphic findBestGraphicForOption(String algorithmOption) {
+	public Graphic findBestGraphicForOptionOld(String algorithmOption) {
 		List<Graphic> allPossibleGraphics = findAllPossibleCombinations();
 		
 		if(algorithmOption.compareToIgnoreCase(GraphicgeneratorApplication.SINGLE_DAY_ALG) == 0) {
-			return GraphicSelector.singleDayPrefferedGraphic(allPossibleGraphics);
+			return GraphicSelector.singleDayPrefferedGraphic(allPossibleGraphics, 90);
 		}
 		else if(algorithmOption.compareToIgnoreCase("lessgaps") == 0) {
-			return GraphicSelector.moreDaysWithSmallerGapsBetweenCoursesPrefferedGraphic(allPossibleGraphics);
+			return GraphicSelector.moreDaysWithSmallerGapsBetweenCoursesPrefferedGraphic(allPossibleGraphics, 90);
 		}
 		
 		return null;
 	}
 
+	@Override
+	public GraphicDto findBestGraphicForOption(BestGraphicRequieredInfoDto courseOptionsWithGraphicDetails) {		
+		List<CourseOption> courseOptionsInEntityFormat = DtoWithEntityConvertor.
+				convertDtoToEntity(List.of(courseOptionsWithGraphicDetails.allCourseOptions()));
+		List<Course> allCourses = DtoWithEntityConvertor.getAllCoursesFromCourseOption(courseOptionsInEntityFormat);
+		List<List<CourseOption>> allCourseOptionsSeparatedByCourseName = 
+				CourseCollectionManipulator.aggregateCoursesIntoDifferentCollection(allCourses,courseOptionsInEntityFormat);
+		
+		List<Graphic> allPossibleGraphics = CourseCollectionManipulator.graphicGenerator(allCourseOptionsSeparatedByCourseName);
+		
+
+		
+		if(courseOptionsWithGraphicDetails.algorithm().compareToIgnoreCase(GraphicgeneratorApplication.SINGLE_DAY_ALG) == 0) {
+			return DtoWithEntityConvertor.convertEntityGraphicToDtoGraphic(
+					GraphicSelector.singleDayPrefferedGraphic(allPossibleGraphics, courseOptionsWithGraphicDetails.duration()));
+		}
+		else if(courseOptionsWithGraphicDetails.algorithm().compareToIgnoreCase(GraphicgeneratorApplication.LESS_GAPS_ALG) == 0) {
+			return DtoWithEntityConvertor.convertEntityGraphicToDtoGraphic(
+					GraphicSelector.moreDaysWithSmallerGapsBetweenCoursesPrefferedGraphic(allPossibleGraphics, courseOptionsWithGraphicDetails.duration()));
+		}
+		
+				
+		
+		return null;
+	}
+	
 }

@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { CourseOption } from '../models/courseOption';
 import { Graphic } from '../models/graphic';
 import { CourseoptionsService } from './courseoptions.service';
 
@@ -21,9 +22,11 @@ export class GraphicService {
     return this.httpClient.post<Graphic>(
       `${environment.restApi}/graphic/best`,
       {
-        algorithm: algorithm,
-        duration: lectureDuration,
-        allCourseOptions: this.courseOptionService.getCourseOptions(),
+        BestGraphicRequieredInfoDto: {
+          algorithm: algorithm,
+          duration: lectureDuration,
+          allCourseOptions: this.courseOptionService.getCourseOptions(),
+        },
       }
     );
   }

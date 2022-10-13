@@ -5,6 +5,8 @@ package com.sportware.graphicgenerator.services;
 
 import java.util.List;
 
+import com.sportware.graphicgenerator.dto.BestGraphicRequieredInfoDto;
+import com.sportware.graphicgenerator.dto.GraphicDto;
 import com.sportware.graphicgenerator.entities.Graphic;
 
 /**
@@ -20,5 +22,15 @@ public interface GraphicService {
 	 * @param algorithmOption Defines the different way of finding the best option.
 	 * @return best option.
 	 */
-	public Graphic findBestGraphicForOption(String algorithmOption);
+	public Graphic findBestGraphicForOptionOld(String algorithmOption);
+	
+	
+	
+	/** The method accepts all obbject containing all requiered data for extracting only one valid best graphic.
+	 * @param courseOptionsWithGraphicDetails requiered options.
+	 * @return the best graphic.
+	 */
+	public GraphicDto findBestGraphicForOption(BestGraphicRequieredInfoDto courseOptionsWithGraphicDetails);
+	
+	
 }

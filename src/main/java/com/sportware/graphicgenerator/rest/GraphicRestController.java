@@ -3,9 +3,13 @@
  */
 package com.sportware.graphicgenerator.rest;
 
+import java.lang.reflect.Array;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -14,6 +18,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sportware.graphicgenerator.GraphicgeneratorApplication;
+import com.sportware.graphicgenerator.dto.BestGraphicRequieredInfoDto;
+import com.sportware.graphicgenerator.dto.CourseOptionDto;
+import com.sportware.graphicgenerator.dto.GraphicDto;
 import com.sportware.graphicgenerator.entities.Graphic;
 import com.sportware.graphicgenerator.services.GraphicService;
 
@@ -22,7 +29,9 @@ import com.sportware.graphicgenerator.services.GraphicService;
  */
 @RestController
 @RequestMapping("graphic")
+@CrossOrigin(origins = "http://localhost:4200")
 public class GraphicRestController {
+	private final Logger LOGGER = Logger.getLogger(GraphicRestController.class.getName());
 
 	@Autowired
 	GraphicService service;
@@ -41,8 +50,10 @@ public class GraphicRestController {
 	 * @return best graphic for the client.
 	 */
 	@PostMapping("best")
-	public Graphic findBestGraphicForOption(@RequestBody BestGraphicRequieredInfoDto courseOptionsWithGraphicDetails) {
-		return service.findBestGraphicForOption(algorithmOption);
+	public GraphicDto findBestGraphicForOption(@RequestBody BestGraphicRequieredInfoDto courseOptionsWithGraphicDetails) {
+		
+		return service.findBestGraphicForOption(courseOptionsWithGraphicDetails);
+
 	}
 	
 	/** The method accepts request on given endpoint and uses a query parameter, which defines the client 
@@ -52,6 +63,6 @@ public class GraphicRestController {
 	 */
 	@GetMapping("bestOld")
 	public Graphic findBestGraphicForOptionOld(@RequestParam(defaultValue = GraphicgeneratorApplication.SINGLE_DAY_ALG) String algorithmOption) {
-		return service.findBestGraphicForOption(algorithmOption);
+		return service.findBestGraphicForOptionOld(algorithmOption);
 	}
 }
