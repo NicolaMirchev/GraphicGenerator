@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Route, Router } from '@angular/router';
 import { GraphicService } from 'src/app/services/graphic.service';
 
 @Component({
@@ -10,7 +11,10 @@ export class GenerategraphicDialogComponent implements OnInit {
   duration: number = 90;
   selectedAlgorithm: string = '';
 
-  constructor(private readonly graphicService: GraphicService) {}
+  constructor(
+    private readonly graphicService: GraphicService,
+    private readonly router: Router
+  ) {}
 
   ngOnInit(): void {}
 
@@ -20,7 +24,8 @@ export class GenerategraphicDialogComponent implements OnInit {
       .getBestGraphic(this.selectedAlgorithm, this.duration)
       .subscribe({
         next: (result) => {
-          console.log(result);
+          this.graphicService.assignBestGraphicToLC(result);
+          this.router.navigateByUrl('/mygraphic');
         },
       });
     console.log(this.duration + ' ' + this.selectedAlgorithm);

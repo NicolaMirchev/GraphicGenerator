@@ -12,6 +12,7 @@ import { EntercoursesComponent } from './views/graphic/entercourses/entercourses
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { GenerategraphicDialogComponent } from './views/graphic/entercourses/generategraphic-dialog/generategraphic-dialog.component';
+import { ShowGraphicComponent } from './views/graphic/show-graphic/show-graphic.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { GenerategraphicDialogComponent } from './views/graphic/entercourses/gen
     HomeInfoComponent,
     EntercoursesComponent,
     GenerategraphicDialogComponent,
+    ShowGraphicComponent,
   ],
   imports: [
     BrowserModule,

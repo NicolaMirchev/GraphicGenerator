@@ -116,7 +116,7 @@ class GraphicSelectorTest {
 		Map<String, List<CourseOption>> coursesByDays = GraphicSelector
 				.divideAllCoursesFromGraphicIntoDaysOfTheWeek(graphicWithCoursesInSameTime);
 
-		assertTrue(GraphicSelector.isThereCoursesInSameTime(coursesByDays));
+		assertTrue(GraphicSelector.isThereCoursesInSameTime(coursesByDays, 90));
 	}
 		
 
@@ -127,13 +127,13 @@ class GraphicSelectorTest {
 				.divideAllCoursesFromGraphicIntoDaysOfTheWeek(graphicWithCoursesInSameTime);
 		coursesByDays.get("wednesday").remove(1);
 
-		assertFalse(GraphicSelector.isThereCoursesInSameTime(coursesByDays));
+		assertFalse(GraphicSelector.isThereCoursesInSameTime(coursesByDays, 90));
 	}
 
 	@Test
 	void singleDayPrefferedGraphicReturnTheCorrectGraphic() {
 		
-		Graphic expected = GraphicSelector.singleDayPrefferedGraphic(allPossibleGraphics);
+		Graphic expected = GraphicSelector.singleDayPrefferedGraphic(allPossibleGraphics, 90);
 		
 		assertThat(expected).isEqualTo(singleDayGraphic);	
 	}
@@ -141,7 +141,7 @@ class GraphicSelectorTest {
 	@Test
 	void moreDaysWithSmallerGapsBetweenCoursesPrefferedGraphicReturnTheCorrectGraphic() {
 
-		Graphic expected = GraphicSelector.moreDaysWithSmallerGapsBetweenCoursesPrefferedGraphic(allPossibleGraphics);
+		Graphic expected = GraphicSelector.moreDaysWithSmallerGapsBetweenCoursesPrefferedGraphic(allPossibleGraphics, 90);
 
 		assertThat(expected).isEqualTo(lessGapsGraphic);
 		assertThat(expected).isNotEqualTo(singleDayGraphic);

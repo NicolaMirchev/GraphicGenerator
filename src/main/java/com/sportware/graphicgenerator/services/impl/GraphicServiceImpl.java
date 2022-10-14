@@ -1,6 +1,8 @@
 package com.sportware.graphicgenerator.services.impl;
 
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,6 +14,7 @@ import com.sportware.graphicgenerator.dto.GraphicDto;
 import com.sportware.graphicgenerator.entities.Course;
 import com.sportware.graphicgenerator.entities.CourseOption;
 import com.sportware.graphicgenerator.entities.Graphic;
+import com.sportware.graphicgenerator.rest.GraphicRestController;
 import com.sportware.graphicgenerator.services.GraphicService;
 import com.sportware.graphicgenerator.utils.CourseCollectionManipulator;
 import com.sportware.graphicgenerator.utils.DtoWithEntityConvertor;
@@ -22,6 +25,7 @@ import com.sportware.graphicgenerator.utils.GraphicSelector;
  */
 @Service
 public class GraphicServiceImpl extends BaseCourseOptionsGraphic implements GraphicService {
+	private final Logger LOGGER = Logger.getLogger(GraphicServiceImpl.class.getName());
 	
 	@Override
 	@Transactional
@@ -52,16 +56,18 @@ public class GraphicServiceImpl extends BaseCourseOptionsGraphic implements Grap
 	@Override
 	public GraphicDto findBestGraphicForOption(BestGraphicRequieredInfoDto courseOptionsWithGraphicDetails) {		
 		List<CourseOption> courseOptionsInEntityFormat = DtoWithEntityConvertor.
-				convertDtoToEntity(List.of(courseOptionsWithGraphicDetails.allCourseOptions()));
+				convertDtoToEntity(courseOptionsWithGraphicDetails.allCourseOptions());
 		List<Course> allCourses = DtoWithEntityConvertor.getAllCoursesFromCourseOption(courseOptionsInEntityFormat);
 		List<List<CourseOption>> allCourseOptionsSeparatedByCourseName = 
 				CourseCollectionManipulator.aggregateCoursesIntoDifferentCollection(allCourses,courseOptionsInEntityFormat);
 		
 		List<Graphic> allPossibleGraphics = CourseCollectionManipulator.graphicGenerator(allCourseOptionsSeparatedByCourseName);
 		
-
+		LOGGER.log(Level.SEVERE, "BeforeAlgorithm");
 		
 		if(courseOptionsWithGraphicDetails.algorithm().compareToIgnoreCase(GraphicgeneratorApplication.SINGLE_DAY_ALG) == 0) {
+			LOGGER.log(Level.SEVERE, "In the algorithm!");
+			
 			return DtoWithEntityConvertor.convertEntityGraphicToDtoGraphic(
 					GraphicSelector.singleDayPrefferedGraphic(allPossibleGraphics, courseOptionsWithGraphicDetails.duration()));
 		}

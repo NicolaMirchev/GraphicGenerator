@@ -22,12 +22,18 @@ export class GraphicService {
     return this.httpClient.post<Graphic>(
       `${environment.restApi}/graphic/best`,
       {
-        BestGraphicRequieredInfoDto: {
-          algorithm: algorithm,
-          duration: lectureDuration,
-          allCourseOptions: this.courseOptionService.getCourseOptions(),
-        },
+        algorithm: algorithm,
+        duration: lectureDuration,
+        allCourseOptions: this.courseOptionService.getCourseOptions(),
       }
     );
+  }
+
+  assignBestGraphicToLC(graphic: Graphic) {
+    localStorage.setItem('graphic', JSON.stringify(graphic));
+  }
+
+  getGraphicFromLC() {
+    return JSON.parse(localStorage.getItem('graphic') ?? '');
   }
 }

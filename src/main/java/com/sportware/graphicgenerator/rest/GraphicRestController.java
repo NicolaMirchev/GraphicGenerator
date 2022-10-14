@@ -51,7 +51,7 @@ public class GraphicRestController {
 	 */
 	@PostMapping("best")
 	public GraphicDto findBestGraphicForOption(@RequestBody BestGraphicRequieredInfoDto courseOptionsWithGraphicDetails) {
-		
+		LOGGER.log(Level.SEVERE, "From Controller");
 		return service.findBestGraphicForOption(courseOptionsWithGraphicDetails);
 
 	}
