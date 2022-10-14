@@ -10,6 +10,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatListModule } from '@angular/material/list';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [],
@@ -35,6 +36,7 @@ import { MatRadioModule } from '@angular/material/radio';
     MatListModule,
     MatDialogModule,
     MatRadioModule,
+    MatProgressSpinnerModule,
   ],
 })
 export class NgMaterialModule {}

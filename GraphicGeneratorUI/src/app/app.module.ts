@@ -10,9 +10,11 @@ import { NgMaterialModule } from './material/ng-material/ng-material.module';
 import { HomeInfoComponent } from './views/home-info/home-info.component';
 import { EntercoursesComponent } from './views/graphic/entercourses/entercourses.component';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { GenerategraphicDialogComponent } from './views/graphic/entercourses/generategraphic-dialog/generategraphic-dialog.component';
 import { ShowGraphicComponent } from './views/graphic/show-graphic/show-graphic.component';
+import { SpinnerComponent } from './views/spinner/spinner.component';
+import { LoadingInterceptor } from './interceptors/loading.interceptor';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,7 @@ import { ShowGraphicComponent } from './views/graphic/show-graphic/show-graphic.
     EntercoursesComponent,
     GenerategraphicDialogComponent,
     ShowGraphicComponent,
+    SpinnerComponent,
   ],
   imports: [
     BrowserModule,
@@ -33,7 +36,13 @@ import { ShowGraphicComponent } from './views/graphic/show-graphic/show-graphic.
     BrowserModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoadingInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
