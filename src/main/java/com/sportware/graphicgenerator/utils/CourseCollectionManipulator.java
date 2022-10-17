@@ -64,7 +64,7 @@ public class CourseCollectionManipulator  {
 	 */
 	public static List<Graphic> graphicGenerator(List<List<CourseOption>> allCourseOptions) {
 		
-		List<Graphic> allGraphics = new ArrayList<>();
+		List<Graphic> allGraphics = new ArrayList<>(allCourseOptions.size());
 		Graphic currentGraphic = new Graphic(0);
 		int courseCounter = 0;
 		

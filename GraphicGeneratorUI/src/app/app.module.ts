@@ -14,7 +14,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { GenerategraphicDialogComponent } from './views/graphic/entercourses/generategraphic-dialog/generategraphic-dialog.component';
 import { ShowGraphicComponent } from './views/graphic/show-graphic/show-graphic.component';
 import { SpinnerComponent } from './views/spinner/spinner.component';
-import { LoadingInterceptor } from './interceptors/loading.interceptor';
 
 @NgModule({
   declarations: [
@@ -36,13 +35,7 @@ import { LoadingInterceptor } from './interceptors/loading.interceptor';
     BrowserModule,
     HttpClientModule,
   ],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: LoadingInterceptor,
-      multi: true,
-    },
-  ],
+  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -1,1 +1,23 @@
-<p>show-graphic works!</p>
+<table mat-table [dataSource]="this.graphic.courses">
+  <ng-container matColumnDef="weekday">
+    <th mat-header-cell *matHeaderCellDef>Weekday</th>
+    <td mat-cell *matCellDef="let element">{{ element.weekday }}</td>
+  </ng-container>
+
+  <!-- Weight Column -->
+  <ng-container matColumnDef="course">
+    <th mat-header-cell *matHeaderCellDef>Course</th>
+    <td mat-cell *matCellDef="let element">{{ element.nameOfTheCourse }}</td>
+  </ng-container>
+
+  <!-- Symbol Column -->
+  <ng-container matColumnDef="startingTime">
+    <th mat-header-cell *matHeaderCellDef>Starting time</th>
+    <td mat-cell *matCellDef="let element">
+      {{ element.startingHours }} : {{ element.startingMinutes }}
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>

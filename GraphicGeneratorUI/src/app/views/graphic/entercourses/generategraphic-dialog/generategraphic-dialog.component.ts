@@ -19,6 +19,7 @@ export class GenerategraphicDialogComponent implements OnInit {
   ngOnInit(): void {}
 
   generateGraphic() {
+    this.router.navigateByUrl('/spinner');
     // await data from backend and visualize it.
     this.graphicService
       .getBestGraphic(this.selectedAlgorithm, this.duration)
