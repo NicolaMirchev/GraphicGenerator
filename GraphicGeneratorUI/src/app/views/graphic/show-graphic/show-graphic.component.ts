@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Graphic } from 'src/app/models/graphic';
 import { GraphicService } from 'src/app/services/graphic.service';
 
@@ -22,18 +23,27 @@ export class ShowGraphicComponent implements OnInit {
     Sunday: 7,
   };
 
-  constructor(private graphicService: GraphicService) {}
+  constructor(
+    private graphicService: GraphicService,
+    private readonly router: Router
+  ) {}
 
   ngOnInit(): void {
-    this.graphic.courses.sort(
-      (first, second) =>
-        this.sorter[first.weekday] - this.sorter[second.weekday]
-    );
-    this.graphic.courses.sort((first, second) => {
-      if (first.weekday == second.weekday) {
-        return first.startingHours - second.startingHours;
-      }
-      return 0;
-    });
+    if (this.graphic != null) {
+      this.graphic.courses.sort(
+        (first, second) =>
+          this.sorter[first.weekday] - this.sorter[second.weekday]
+      );
+      this.graphic.courses.sort((first, second) => {
+        if (first.weekday == second.weekday) {
+          return first.startingHours - second.startingHours;
+        }
+        return 0;
+      });
+    }
+  }
+
+  navigateToEnterCourses() {
+    this.router.navigateByUrl('/entercourses');
   }
 }

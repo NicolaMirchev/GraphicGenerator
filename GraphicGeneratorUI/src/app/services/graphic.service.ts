@@ -34,6 +34,6 @@ export class GraphicService {
   }
 
   getGraphicFromLC() {
-    return JSON.parse(localStorage.getItem('graphic') ?? '');
+    return JSON.parse(localStorage.getItem('graphic') ?? 'null');
   }
 }

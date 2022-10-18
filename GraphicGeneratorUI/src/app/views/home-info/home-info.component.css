@@ -1,10 +1,9 @@
 .container {
-  background-color: rgb(175, 163, 188);
-  height: 39vw;
+  margin-top: 2%;
 }
 .accordion {
   padding: 10%;
-  padding-top: 7%;
+  padding-top: 0%;
   align-items: center;
   align-content: center;
   vertical-align: middle;

@@ -14,7 +14,6 @@ import com.sportware.graphicgenerator.dto.GraphicDto;
 import com.sportware.graphicgenerator.entities.Course;
 import com.sportware.graphicgenerator.entities.CourseOption;
 import com.sportware.graphicgenerator.entities.Graphic;
-import com.sportware.graphicgenerator.rest.GraphicRestController;
 import com.sportware.graphicgenerator.services.GraphicService;
 import com.sportware.graphicgenerator.utils.CourseCollectionManipulator;
 import com.sportware.graphicgenerator.utils.DtoWithEntityConvertor;

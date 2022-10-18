@@ -1,4 +1,4 @@
-<mat-card class="container">
+<section class="container">
   <div class="accordion">
     <mat-accordion>
       <mat-expansion-panel hideToggle>
@@ -43,7 +43,24 @@
             project.
           </mat-panel-description>
         </mat-expansion-panel-header>
-        <p>I'm visible because I am open</p>
+        <p>
+          The first idea was only to exercise with Sping Boot and Spring Data
+          JPA, so the back-end is Spring application, consisting of different
+          packages- for cotrollers(REST API), services (where the algorithms
+          about the combinations are executed) and percistance, where are the
+          repositories, related to the data base. For development proccess i
+          used postgres docker container. I made unit tests for each and after
+          each service algorithm implementation, to be sure they work,
+        </p>
+        <p>
+          I wanted to make some UI, where anyone could check his scedule and
+          decided to exercise with Angular, because I had previous experience. I
+          decided that for the "first release" the project will be simpler and
+          DB connection won't be necessary and the whole requiered data will be
+          collected from the browser and sended at once through request. The
+          application procceed the data in the service layer and return a result
+          which is based on the client browser collected data.
+        </p>
       </mat-expansion-panel>
       <mat-expansion-panel>
         <mat-expansion-panel-header>
@@ -52,8 +69,46 @@
             Click here to read about next possible updates for the project.
           </mat-panel-description>
         </mat-expansion-panel-header>
-        <p>I'm visible because I am open</p>
+        <h4>Optimization</h4>
+        <p>
+          The entity model is more complex than the model used for this release
+          and the algorithms use the complex model. This means that there is a
+          conversion from the one model to the other, before executing the
+          algorithms, which slows down the proccess. The one solution that I
+          have in mind is make an algorithms more generic and abstract. Another
+          is migrate the model, when there are more complex features, so the
+          more complex model could be used.
+        </p>
+        <h4>Features</h4>
+        <ul>
+          <li>
+            <p>
+              See all possible combinations - This feature will be easy to
+              implement, because to find the best scedule, there is already
+              written logic to generate all the combinations. But I am not sure
+              if this feature will be usefull, rather than confusing.
+            </p>
+          </li>
+          <li>
+            <p>
+              Login/Logout - respectively assign courses to given user(instead
+              of the browser) - This feature will help me exercise with Spring
+              Security, composition and relation between the objects in the
+              application. The feature requiere "login","logout", "my courses",
+              "my scedule" views, so it will requiere more time to be
+              implemented.
+            </p>
+          </li>
+          <li>
+            <p>
+              Better user experience on signing the courses What will give a
+              user better experince would be an option to select how many hours
+              of the given course are requiered per week. Also, upload the data
+              in some way, instead of writing all by hand.
+            </p>
+          </li>
+        </ul>
       </mat-expansion-panel>
     </mat-accordion>
   </div>
-</mat-card>
+</section>

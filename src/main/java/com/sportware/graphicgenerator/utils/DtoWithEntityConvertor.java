@@ -5,9 +5,9 @@ package com.sportware.graphicgenerator.utils;
 
 import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import com.sportware.graphicgenerator.dto.CourseOptionDto;
 import com.sportware.graphicgenerator.dto.GraphicDto;
@@ -21,6 +21,8 @@ import com.sportware.graphicgenerator.entities.Graphic;
  *
  */
 public class DtoWithEntityConvertor {
+	
+	private static Logger LOGGER = Logger.getLogger(DtoWithEntityConvertor.class.getName());
 	
 	private DtoWithEntityConvertor() {
 		// private constructor, because the class contains only static methods.
@@ -74,6 +76,9 @@ public class DtoWithEntityConvertor {
 	 * @return
 	 */
 	public static GraphicDto convertEntityGraphicToDtoGraphic(Graphic entityGraphic) {
+		
+		LOGGER.log(Level.SEVERE, "In converter!!!");
+		
 		List<CourseOptionDto> options = convertEntityToDto(entityGraphic.getCourses().stream().toList()); 
 		return new GraphicDto(options);
 	}

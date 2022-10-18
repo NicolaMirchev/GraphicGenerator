@@ -1,4 +1,4 @@
-<mat-card>
+<mat-card class="container" *ngIf="this.graphic != null">
   <table mat-table [dataSource]="this.graphic.courses">
     <ng-container matColumnDef="weekday">
       <th mat-header-cell *matHeaderCellDef>Weekday</th>
@@ -23,3 +23,11 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
 </mat-card>
+<ng-container *ngIf="graphic == null">
+  <mat-card class="not-found">
+    <h1>Schedule not found!</h1>
+    <a mat-raised-button [routerLink]="" (click)="navigateToEnterCourses()"
+      >GO TO SUBMIT PAGE</a
+    >
+  </mat-card>
+</ng-container>
