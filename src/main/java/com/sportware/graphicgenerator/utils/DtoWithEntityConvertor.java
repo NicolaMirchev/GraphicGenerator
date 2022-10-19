@@ -77,7 +77,6 @@ public class DtoWithEntityConvertor {
 	 */
 	public static GraphicDto convertEntityGraphicToDtoGraphic(Graphic entityGraphic) {
 		
-		LOGGER.log(Level.SEVERE, "In converter!!!");
 		
 		List<CourseOptionDto> options = convertEntityToDto(entityGraphic.getCourses().stream().toList()); 
 		return new GraphicDto(options);
