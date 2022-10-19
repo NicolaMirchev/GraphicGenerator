@@ -23,20 +23,9 @@ import com.sportware.graphicgenerator.utils.GraphicSelector;
  *
  */
 @Service
-public class GraphicServiceImpl extends BaseCourseOptionsGraphic implements GraphicService {
+public class GraphicServiceImpl implements GraphicService {
 	private final Logger LOGGER = Logger.getLogger(GraphicServiceImpl.class.getName());
 	
-	@Override
-	@Transactional
-	public List<Graphic> findAllPossibleCombinations() {
-		List<CourseOption> allCourseOptions = courseOptionRepository.findAll();
-		List<Course> allCourses = courseRepository.findAll();
-
-		List<List<CourseOption>> allCourseOptionsSeparatedByCourseName = 
-		CourseCollectionManipulator.aggregateCoursesIntoDifferentCollection(allCourses,allCourseOptions);
-		
-		return CourseCollectionManipulator.graphicGenerator(allCourseOptionsSeparatedByCourseName);
-	}
 
 	@Override
 	public Graphic findBestGraphicForOptionOld(String algorithmOption) {
@@ -77,6 +66,12 @@ public class GraphicServiceImpl extends BaseCourseOptionsGraphic implements Grap
 		
 				
 		
+		return null;
+	}
+
+	@Override
+	public List<Graphic> findAllPossibleCombinations() {
+		// TODO Auto-generated method stub
 		return null;
 	}
 	

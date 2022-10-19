@@ -3,7 +3,7 @@
  */
 package com.sportware.graphicgenerator.rest;
 
-import java.lang.reflect.Array;
+
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sportware.graphicgenerator.GraphicgeneratorApplication;
 import com.sportware.graphicgenerator.dto.BestGraphicRequieredInfoDto;
-import com.sportware.graphicgenerator.dto.CourseOptionDto;
 import com.sportware.graphicgenerator.dto.GraphicDto;
 import com.sportware.graphicgenerator.entities.Graphic;
 import com.sportware.graphicgenerator.services.GraphicService;
@@ -54,15 +53,5 @@ public class GraphicRestController {
 		LOGGER.log(Level.SEVERE, "From Controller");
 		return service.findBestGraphicForOption(courseOptionsWithGraphicDetails);
 
-	}
-	
-	/** The method accepts request on given endpoint and uses a query parameter, which defines the client 
-	 * preffered way of attending the courses.
-	 * @param algorithmOption the client opinion of best graphic.
-	 * @return best graphic for the client.
-	 */
-	@GetMapping("bestOld")
-	public Graphic findBestGraphicForOptionOld(@RequestParam(defaultValue = GraphicgeneratorApplication.SINGLE_DAY_ALG) String algorithmOption) {
-		return service.findBestGraphicForOptionOld(algorithmOption);
 	}
 }
