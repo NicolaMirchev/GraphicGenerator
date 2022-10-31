@@ -54,4 +54,10 @@ public class GraphicRestController {
 		return service.findBestGraphicForOption(courseOptionsWithGraphicDetails);
 
 	}
+	
+	@GetMapping("best")
+	public String getBestDefaultAnswer() {
+		return "It works";
+
+	}
 }

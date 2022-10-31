@@ -11,7 +11,7 @@
 	<groupId>com.sportware</groupId>
 	<artifactId>graphicgenerator</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 	<name>graphicgenerator</name>
 	<description>A graphic generator which generates graphic with minimum gaps between courses.</description>
 	<properties>

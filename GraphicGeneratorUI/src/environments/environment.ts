@@ -3,8 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
-  restApi: 'http://localhost:8080',
+  production: true,
+  restApi: 'http://schedulegenerator.eu-central-1.elasticbeanstalk.com',
 };
 
 /*
