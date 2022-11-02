@@ -4,7 +4,6 @@
 
 export const environment = {
   production: true,
-  restApi: 'http://schedulegenerator.eu-central-1.elasticbeanstalk.com',
 };
 
 /*
